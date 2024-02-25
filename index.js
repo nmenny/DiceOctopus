@@ -22,7 +22,7 @@ const myCommands = [];
 
 exploreCommandsFolder(commandFolderPath, "", myCommands);
 
-for(const cmd of myCommands) {
+for (const cmd of myCommands) {
     client.commands.set(cmd.data.name, cmd);
 }
 
@@ -30,18 +30,18 @@ for(const cmd of myCommands) {
 // Interaction
 
 client.on(Events.InteractionCreate, async interaction => {
-    if(!interaction.isChatInputCommand()) return;
+    if (!interaction.isChatInputCommand()) return;
 
     const cmd = interaction.client.commands.get(interaction.commandName);
 
-    if(!cmd) {
+    if (!cmd) {
         console.error(`No command matching ${interaction.commandName} was found.`);
         return;
     }
 
     try {
         await cmd.execute(interaction);
-    } catch(err) {
+    } catch (err) {
         console.error(err);
         if (interaction.replied || interaction.deferred) {
             await interaction.followUp({ content: 'There was an error while executing this command!', ephemeral: true });

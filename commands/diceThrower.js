@@ -9,7 +9,7 @@ const command = new SlashCommandBuilder()
     .setNameLocalizations({ fr: "lancer" })
     .setDescription("Throws dice.")
     .setDescriptionLocalizations({ fr: "Lance des dés." })
-    .addStringOption(opt => 
+    .addStringOption(opt =>
         opt.setName("dices")
             .setNameLocalizations({ fr: "dés" })
             .setDescription("What to throw.")
@@ -17,19 +17,19 @@ const command = new SlashCommandBuilder()
             .setMaxLength(300)
             .setRequired(true)
     )
-    .addBooleanOption(opt => 
+    .addBooleanOption(opt =>
         opt.setName("silent")
             .setNameLocalizations({ fr: "silencieux" })
-            .setDescription("Do not display the details of each dice.")    
+            .setDescription("Do not display the details of each dice.")
             .setDescriptionLocalizations({ fr: "N'affiche pas les détails du lancé." })
     )
 
 function throwDice(dices) {
     const detail = {};
     let result = 0;
-    for(const diceType in dices) {
+    for (const diceType in dices) {
         detail[diceType] = [];
-        for(let diceCnt = 0; diceCnt < dices[diceType]; diceCnt++) {
+        for (let diceCnt = 0; diceCnt < dices[diceType]; diceCnt++) {
             const res = Math.round(Math.random() * (diceType - 1)) + 1;
 
             result += res;
@@ -48,23 +48,23 @@ async function execute(interact) {
         const finalResult = parsed.modifier + throwRes.result;
         let reply = "";
 
-        if(parsed.modifier !== 0) {
+        if (parsed.modifier !== 0) {
             const sign = parsed.modifier > 0 ? "+" : "-";
-            reply = `\`${args}\` => **${finalResult}** (${throwRes.result} ${sign} ${parsed.modifier})`;    
+            reply = `\`${args}\` => **${finalResult}** (${throwRes.result} ${sign} ${parsed.modifier})`;
         } else {
             reply = `\`${args}\` => **${finalResult}**`;
         }
 
-        if(!interact.options.getBoolean("silent") ?? true) {
+        if (!interact.options.getBoolean("silent") ?? true) {
             reply += '\n';
 
-            for(let diceType in throwRes.detail) {
+            for (let diceType in throwRes.detail) {
                 const diceDetails = throwRes.detail[diceType];
                 let totalCnt = 0;
                 reply += `\n- ${diceDetails.length}d${diceType} :`;
-                for(let diceCnt in diceDetails) {
+                for (let diceCnt in diceDetails) {
                     totalCnt += diceDetails[diceCnt];
-                    if(diceCnt === '0') {
+                    if (diceCnt === '0') {
                         reply += ` ${diceDetails[diceCnt]}`;
                     } else {
                         reply += ` + ${diceDetails[diceCnt]}`
@@ -76,7 +76,7 @@ async function execute(interact) {
         }
 
         await interact.reply(reply);
-    } catch(err) {
+    } catch (err) {
         await interact.reply({ content: `[ERR] ${err.message}`, ephemeral: true });
     }
 }

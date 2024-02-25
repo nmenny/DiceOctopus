@@ -19,7 +19,7 @@ const commandFolderPath = path.join(__dirname, "commands");
 
 exploreCommandsFolder(commandFolderPath, "", commands);
 
-for(let cmdIdx in commands) {
+for (let cmdIdx in commands) {
     commands[cmdIdx] = commands[cmdIdx].data.toJSON();
 }
 
@@ -33,12 +33,12 @@ const rest = new REST().setToken(process.env.TOKEN);
 
         let route = undefined;
 
-        if(appEnv !== "deployment") {
+        if (appEnv !== "deployment") {
             route = Routes.applicationGuildCommands(process.env.CLIENT_ID, process.env.GUILD_ID);
         } else {
             route = Routes.applicationCommands(process.env.CLIENT_ID);
         }
-        
+
         const data = await rest.put(
             route,
             { body: commands },
