@@ -44,3 +44,25 @@ And then, the Bot can be started with the following command :
 ```bash
 node .
 ```
+
+## Available commands
+
+### /throw
+
+Throws dice.
+
+Usage: `/throw dices [silent]`
+
+Details:   
+- `dices`: what to throw. Each dice is of the form `xdy` where `x` is the number of dice to throw and `y` is the type of dice thrown. (e.g. `3d6` means that 3 dices with 6 faces are thrown). It is also possible to add (+) or subtract (-) values to the final result. (e.g. `3d6 + 2` which adds 2 to the final result)
+- `silent`: (**optional**) if <tt>true</tt>, do not detail the results of the dices.
+
+Result:    
+
+The command returns the result in bold of the dices and if `silent` is omitted or set to false the details of each dice is shown.   
+For example,   
+`/throw 1d100 7d8 + 3`  
+> 1d100 7d8 + 3 = **62** (59 + 3)
+> 
+> 7d8 : 2 + 3 + 8 + 7 + 2 + 5 + 4 (31)   
+> 1d100 : 28 (28)
