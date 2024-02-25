@@ -3,7 +3,7 @@ const path = require("path");
 const { Client, Collection, Events, GatewayIntentBits } = require("discord.js");
 const dotenv = require("dotenv");
 
-const { exploreCommandsFolder } = require("./utils");
+const { exploreCommandsFolder } = require(path.join(__dirname, "utils", "commandUtils"));
 
 
 // --------------

@@ -4,7 +4,7 @@ const path = require("path");
 const { REST, Routes } = require("discord.js");
 const dotenv = require("dotenv");
 
-const { exploreCommandsFolder } = require("./utils");
+const { exploreCommandsFolder } = require(path.join(__dirname, "utils", "commandUtils"));
 
 
 // --------------
