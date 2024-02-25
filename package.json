@@ -1,5 +1,5 @@
 {
-  "name": "diceoctopus",
+  "name": "OctoDice",
   "version": "0.0.1",
   "description": "A discord bot playing dice.",
   "main": "index.js",
@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/nmenny/DiceOctopus.git"
+    "url": "git+https://github.com/nmenny/OctoDice.git"
   },
   "keywords": [
     "Bot",
@@ -18,9 +18,9 @@
   "author": "Nathan Menny",
   "license": "GPL-3.0",
   "bugs": {
-    "url": "https://github.com/nmenny/DiceOctopus/issues"
+    "url": "https://github.com/nmenny/OctoDice/issues"
   },
-  "homepage": "https://github.com/nmenny/DiceOctopus#readme",
+  "homepage": "https://github.com/nmenny/OctoDice#readme",
   "dependencies": {
     "discord.js": "^14.12.1"
   }
