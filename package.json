@@ -22,6 +22,7 @@
   },
   "homepage": "https://github.com/nmenny/OctoDice#readme",
   "dependencies": {
-    "discord.js": "^14.12.1"
+    "discord.js": "^14.12.1",
+    "dotenv": "^16.4.5"
   }
 }
