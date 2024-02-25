@@ -43,16 +43,16 @@ client.on(Events.InteractionCreate, async interaction => {
         await cmd.execute(interaction);
     } catch(err) {
         console.error(err);
-		if (interaction.replied || interaction.deferred) {
-			await interaction.followUp({ content: 'There was an error while executing this command!', ephemeral: true });
-		} else {
-			await interaction.reply({ content: 'There was an error while executing this command!', ephemeral: true });
-		}
+        if (interaction.replied || interaction.deferred) {
+            await interaction.followUp({ content: 'There was an error while executing this command!', ephemeral: true });
+        } else {
+            await interaction.reply({ content: 'There was an error while executing this command!', ephemeral: true });
+        }
     }
 });
 
 client.once(Events.ClientReady, readyClient => {
-	console.log(`Ready! Logged in as ${readyClient.user.tag}`);
+    console.log(`Ready! Logged in as ${readyClient.user.tag}`);
 });
 
 client.login(process.env.TOKEN);
