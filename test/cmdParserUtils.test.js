@@ -28,6 +28,28 @@ describe("cmdParserUtils", () => {
             assert.fail();
         });
 
+        it("must throw at least one dice", () => {
+            try {
+                parseCmd("+3");
+            } catch (err) {
+                assert.ok(true);
+                return;
+            }
+
+            assert.fail();
+        });
+
+        it("cannot throw zero dice", () => {
+            try {
+                parseCmd("0d100");
+            } catch (err) {
+                assert.ok(true);
+                return;
+            }
+
+            assert.fail();
+        });
+
         it("should work with spaces", () => {
             const res = parseCmd("       1d6 + 10      ");
             assert.deepEqual(res.dices, { 6: 1 });

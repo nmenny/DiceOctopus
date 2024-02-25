@@ -31,6 +31,7 @@ function parseCmd(cmd) {
         switch (car) {
             case 'd':
                 if (isNaN(currNb)) throw Error("The number of dice to throw is not specified");
+                if (currNb <= 0) throw Error("Cannot throw a negative number or zero dice");
                 if (carIdx + 1 >= cmd.length) throw Error("Invalid format, should specify the type of dice to throw");
                 if (cmd[carIdx - 1] === ' ' || cmd[carIdx + 1] === ' ') throw Error(`Should not have space between the 'd'`);
 
@@ -72,6 +73,10 @@ function parseCmd(cmd) {
                 currNb = res.nb;
                 carIdx = skipSpace(res.newIdx, cmd);
         }
+    }
+
+    if (Object.keys(dices).length === 0) {
+        throw Error("You must throw at least one dice");
     }
 
     return { dices: dices, modifier: modifier };
