@@ -6,16 +6,22 @@ const { parseCmd } = require(path.join("..", "utils", "cmdParserUtils"));
 
 const command = new SlashCommandBuilder()
     .setName("throw")
-    .setDescription("Throws dice")
+    .setNameLocalizations({ fr: "lancer" })
+    .setDescription("Throws dice.")
+    .setDescriptionLocalizations({ fr: "Lance des dés." })
     .addStringOption(opt => 
         opt.setName("dices")
-            .setDescription("What to throw")
+            .setNameLocalizations({ fr: "dés" })
+            .setDescription("What to throw.")
+            .setDescriptionLocalizations({ fr: "Quoi lancer." })
             .setMaxLength(300)
             .setRequired(true)
     )
     .addBooleanOption(opt => 
         opt.setName("silent")
-            .setDescription("Do not detail the throw details")    
+            .setNameLocalizations({ fr: "silencieux" })
+            .setDescription("Do not display the details of each dice.")    
+            .setDescriptionLocalizations({ fr: "N'affiche pas les détails du lancé." })
     )
 
 function throwDice(dices) {
@@ -44,9 +50,9 @@ async function execute(interact) {
 
         if(parsed.modifier !== 0) {
             const sign = parsed.modifier > 0 ? "+" : "-";
-            reply = `${args} => **${finalResult}** (${throwRes.result} ${sign} ${parsed.modifier})`;    
+            reply = `\`${args}\` => **${finalResult}** (${throwRes.result} ${sign} ${parsed.modifier})`;    
         } else {
-            reply = `${args} => **${finalResult}**`;
+            reply = `\`${args}\` => **${finalResult}**`;
         }
 
         if(!interact.options.getBoolean("silent") ?? true) {
