@@ -4,7 +4,7 @@
   "description": "A discord bot playing dice.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha"
   },
   "repository": {
     "type": "git",
@@ -23,6 +23,7 @@
   "homepage": "https://github.com/nmenny/OctoDice#readme",
   "dependencies": {
     "discord.js": "^14.12.1",
-    "dotenv": "^16.4.5"
+    "dotenv": "^16.4.5",
+    "mocha": "^10.3.0"
   }
 }
