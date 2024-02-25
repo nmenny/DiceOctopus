@@ -5,12 +5,15 @@ const { Client, Collection, Events, GatewayIntentBits } = require("discord.js");
 const dotenv = require("dotenv");
 
 
+// --------------
 // Get the configurations
 dotenv.config();
 
+// --------------
 // Setup Discord Bot
 const client = new Client({ intents: [GatewayIntentBits.Guilds] });
 
+// --------------
 // Gets the commands
 client.commands = new Collection();
 
@@ -40,5 +43,30 @@ function exploreCommandsFolder(currPath, fileName = "") {
 }
 
 exploreCommandsFolder(commandFolderPath);
+
+// --------------
+// Interaction
+
+client.on(Events.InteractionCreate, async interaction => {
+    if(!interaction.isChatInputCommand()) return;
+
+    const cmd = interaction.client.commands.get(interaction.commandName);
+
+    if(!cmd) {
+        console.error(`No command matching ${interaction.commandName} was found.`);
+        return;
+    }
+
+    try {
+        await cmd.execute(interaction);
+    } catch(err) {
+        console.error(err);
+		if (interaction.replied || interaction.deferred) {
+			await interaction.followUp({ content: 'There was an error while executing this command!', ephemeral: true });
+		} else {
+			await interaction.reply({ content: 'There was an error while executing this command!', ephemeral: true });
+		}
+    }
+});
 
 // client.login(process.env.TOKEN);
