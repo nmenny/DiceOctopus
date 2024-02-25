@@ -20,5 +20,8 @@
   "bugs": {
     "url": "https://github.com/nmenny/DiceOctopus/issues"
   },
-  "homepage": "https://github.com/nmenny/DiceOctopus#readme"
+  "homepage": "https://github.com/nmenny/DiceOctopus#readme",
+  "dependencies": {
+    "discord.js": "^14.12.1"
+  }
 }
