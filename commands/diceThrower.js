@@ -36,10 +36,10 @@ const command = new SlashCommandBuilder()
             .setRequired(true)
     )
     .addBooleanOption(opt =>
-        opt.setName("silent")
-            .setNameLocalizations({ fr: "silencieux" })
-            .setDescription("Do not display the details of each dice.")
-            .setDescriptionLocalizations({ fr: "N'affiche pas les détails du lancé." })
+        opt.setName("verbose")
+            .setNameLocalizations({ fr: "verbeux" })
+            .setDescription("Display the details of each dice.")
+            .setDescriptionLocalizations({ fr: "Affiche les détails du lancé." })
     )
 
 function throwDice(dices) {
@@ -73,7 +73,7 @@ async function execute(interact) {
             reply = `\`${args}\` => **${finalResult}**`;
         }
 
-        if (!interact.options.getBoolean("silent") ?? true) {
+        if (interact.options.getBoolean("verbose") ?? false) {
             reply += '\n';
 
             for (let diceType in throwRes.detail) {
