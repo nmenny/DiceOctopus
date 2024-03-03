@@ -1,6 +1,6 @@
 {
   "name": "OctoDice",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A discord bot playing dice.",
   "main": "index.js",
   "scripts": {
