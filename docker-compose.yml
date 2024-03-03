@@ -1,0 +1,7 @@
+version: "3"
+services:
+  octodice:
+    container_name: octodice
+    build: .
+    env_file: .env
+    restart: always
