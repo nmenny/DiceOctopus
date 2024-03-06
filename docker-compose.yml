@@ -4,4 +4,4 @@ services:
     container_name: octodice
     build: .
     env_file: .env
-    restart: on-failure
+    restart: unless-stopped
